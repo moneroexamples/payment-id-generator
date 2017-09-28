@@ -96,53 +96,31 @@
       }
 
       obj.generateCustomID = function(evt, inputElem) {
-
-        var payment_id = evt.target.value;
-
-        if (payment_id.length <= 64 && /^[0-9a-f]+$/.test(payment_id))
-        {
-            // if payment id is shorter, but has correct number, just
-            // pad it to required length with zeros
-            payment_id = strpad(payment_id, "0", 64);
-
-            obj.paymnet_id_hex = payment_id;
-        }
-        else {
-          obj.paymnet_id_hex = "invalid characteres";
-        }
-
+        obj.paymnet_id_hex = strpad(evt.target.value, "0", 64);
         obj.updatedPaymentIDDisply(inputElem);
       }
-
 
       obj.generateAsciiID = function(evt, inputElem) {
-
-        var ascii_str = evt.target.value;
-
-        var payment_id = ascii_to_hexa(ascii_str);
-
-        if (payment_id.length <= 64)
-        {
-            // if payment id is shorter, but has correct number, just
-            // pad it to required length with zeros
-            payment_id = strpad(payment_id, "0", 64);
-        }
-
-        if (payment_id.length > 64)
-          {
-              // if payment id is shorter, but has correct number, just
-              // pad it to required length with zeros
-              payment_id = "ascii string to long";
-          }
-
-        obj.paymnet_id_hex = payment_id;
-
+        obj.paymnet_id_hex = ascii_to_hexa(evt.target.value);
         obj.updatedPaymentIDDisply(inputElem);
       }
 
-
 			obj.updatedPaymentIDDisply = function(inputElem) {
-				inputElem.value = obj.paymnet_id_hex;
+
+        var payment_id = obj.paymnet_id_hex;
+
+        if (!/^[0-9a-f]+$/.test(payment_id)) {
+             inputElem.value = "payment id has incorrect characters";
+             return;
+        }
+
+        if (payment_id.length < 64) {
+            payment_id = strpad(payment_id, "0", 64);
+        } else if (payment_id.length > 64) {
+            payment_id = "payment id too long";
+        }
+
+	      inputElem.value = payment_id;
 			}
 
 
