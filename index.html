@@ -187,31 +187,38 @@
 
     <h2>Custom payment ID</h2>
     <div>
-      <label for="custom-id-input">Write characters [0-9a-f]</label>
+      <label for="custom-id-input">Provide hex values [0-9a-f]</label>
     	<input type="text" id="custom-id-input">
       <input type="text" id="custom-id-value" readonly>
+      <p></p>
     </div>
 
     <h2>Custom ASCII encoded payment ID</h2>
     <div>
-        <label for="ascii-id-input">Provide ASCII string</label>
+        <label for="ascii-id-input">Provide ASCII characters</label>
       	<input type="text" id="ascii-id-input">
         <input type="text" id="ascii-id-value" readonly>
+
+        <p>ASCII payment id can be decoded, for example
+          <a  href="http://www.rapidtables.com/convert/number/hex-to-ascii.htm">here</a>.
+        </p>
+
     </div>
 
+    <br/>
+
     <div>
-      Note: for privacy reason, its better to use integrated addresses, instead
+      Note that for privacy reasons it is better to use integrated addresses, instead
       of these payments IDs.
     </div>
 
+    <br/>
+
+    <div>
+      <a href="https://github.com/moneroexamples/payment-id-generator">source code</a>
+    </div>
+
   </div>
-
-
-
-
-
-
-
 
 </body>
 </html>
